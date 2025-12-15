@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>color_palette</title>
+</head>
+<style>
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .copy-effect {
+    transform : scale(1.05);
+    color: #16a34a;
+    transition: all 0.5s;
+    }
+</style>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen font-tahoma">
+    <form action="" class=" w-full max-w-4xl sm:max-w-xl lg:max-w-4xl bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center gap-3 py-6 w-7xl">
+        
+        <h1 class="text-2xl font-bold text-center text-gray-700 mb-6">color palette</h1>
+        <div class="flex gap-4 mb-8">
+            <div class="flex flex-col items-center gap-2">
+                <div class=" palette_circle w-20 h-20 rounded-full bg-red-500 border-2 border-gray-400 shadow-[0_0_10px_gray] hover:shadow-[0_0_20px_gray] hover:scale-105 transition-all mr-6 ml-6"></div>
+                <span class="text-sm font-tahoma font-bold italic text-gray-600"><p class="palette_text">#FF5733</p></span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class=" palette_circle w-20 h-20 rounded-full bg-red-500 border-2 border-gray-400 shadow-[0_0_10px_gray] hover:shadow-[0_0_20px_gray] hover:scale-105 transition-all mr-6 ml-6"></div>
+                <span class="text-sm font-tahoma font-bold italic text-gray-600"><p class="palette_text">#FF5733</p></span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class=" palette_circle w-20 h-20 rounded-full bg-red-500 border-2 border-gray-400 shadow-[0_0_10px_gray] hover:shadow-[0_0_20px_gray] hover:scale-105 transition-all mr-6 ml-6"></div>
+                <span class="text-sm font-tahoma font-bold italic text-gray-600"><p class="palette_text">#FF5733</p></span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class=" palette_circle w-20 h-20 rounded-full bg-red-500 border-2 border-gray-400 shadow-[0_0_10px_gray] hover:shadow-[0_0_20px_gray] hover:scale-105 transition-all mr-6 ml-6"></div>
+                <span class="text-sm font-tahoma font-bold italic text-gray-600"><p class="palette_text">#FF5733</p></span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class=" palette_circle w-20 h-20 rounded-full bg-red-500 border-2 border-gray-400 shadow-[0_0_10px_gray] hover:shadow-[0_0_20px_gray] hover:scale-105 transition-all mr-6 ml-6"></div>
+                <span class="text-sm font-tahoma font-bold italic text-gray-600"><p class="palette_text">#FF5733</p></span>
+            </div>
+
+        </div>
+        <div class="flex gap-4 mb-8">
+            <div class="flex flex-col items-center gap-2">
+                <div class=" palette_circle w-20 h-20 rounded-full bg-red-500 border-2 border-gray-400 shadow-[0_0_10px_gray] hover:shadow-[0_0_20px_gray] hover:scale-105 transition-all mr-6 ml-6"></div>
+                <span class="text-sm font-tahoma font-bold italic text-gray-600"><p class="palette_text">#FF5733</p></span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class=" palette_circle w-20 h-20 rounded-full bg-red-500 border-2 border-gray-400 shadow-[0_0_10px_gray] hover:shadow-[0_0_20px_gray] hover:scale-105 transition-all mr-6 ml-6"></div>
+                <span class="text-sm font-tahoma font-bold italic text-gray-600"><p class="palette_text">#FF5733</p></span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class=" palette_circle w-20 h-20 rounded-full bg-red-500 border-2 border-gray-400 shadow-[0_0_10px_gray] hover:shadow-[0_0_20px_gray] hover:scale-105 transition-all mr-6 ml-6"></div>
+                <span class="text-sm font-tahoma font-bold italic text-gray-600"><p class="palette_text">#FF5733</p></span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class=" palette_circle w-20 h-20 rounded-full bg-red-500 border-2 border-gray-400 shadow-[0_0_10px_gray] hover:shadow-[0_0_20px_gray] hover:scale-105 transition-all mr-6 ml-6"></div>
+                <span class="text-sm font-tahoma font-bold italic text-gray-600"><p class="palette_text">#FF5733</p></span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class=" palette_circle w-20 h-20 rounded-full bg-red-500 border-2 border-gray-400 shadow-[0_0_10px_gray] hover:shadow-[0_0_20px_gray] hover:scale-105 transition-all mr-6 ml-6"></div>
+                <span class="text-sm font-tahoma font-bold italic text-gray-600"><p class="palette_text">#FF5733</p></span>
+            </div>
+        </div>
+    </div>
+
+    
+    </form>
+
+    <script>
+        function randomColor() {
+            let chars = "0123456789ABCDEF";
+            let color = "#";
+
+            for (let i = 0; i < 6; i++) {
+                const rand = Math.floor(Math.random() * chars.length);
+                color += chars[rand];
+            }
+
+            return color;
+        }
+        function generatePalette() {
+            const circles = document.querySelectorAll(".palette_circle");
+            const texts = document.querySelectorAll(".palette_text");
+
+            let colors = []
+
+            circles.forEach((circle, index) => {
+                const color = randomColor();
+                colors.push(color)
+
+                circle.style.backgroundColor = color;
+                texts[index].textContent = color;
+            });
+            animateBackground(colors);
+        }
+        document.addEventListener("keydown", (e) => {
+        if (e.code === "Space") {
+            e.preventDefault();
+            generatePalette();
+        }
+        });
+        function animateBackground(colors) {
+            document.body.style.background = `
+            linear-gradient(120deg, ${colors.join(", ")})
+            `;
+            document.body.style.backgroundSize = "400% 400%";
+            document.body.style.animation = "bgMove 12s ease infinite";
+        }
+        document.querySelectorAll(".palette_circle").forEach((circle, index) => {
+            circle.addEventListener("click", () => {
+                const text = document.querySelectorAll(".palette_text")[index].textContent;
+                const textEl = document.querySelectorAll(".palette_text")[index];
+
+                navigator.clipboard.writeText(text);
+
+                textEl.classList.add("copy-effect");
+
+                setTimeout(() => {
+                    textEl.classList.remove("copy-effect");
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen font-tahoma">
+    <form action="" class=" w-full max-w-md bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center gap-3 py-6">
+        
+        <h1 class="text-2xl font-bold text-center text-gray-700 mb-6">tip calculator</h1>
+        <div class=" flex flex-col gap-2 w-full max-w-xs">
+            <label for="name" class="text-lg font-medium text-gray-700">the whole cost</label>
+            <input oninput="nerror();" 
+                   type="number" id="cost" 
+                   class="px-6 py-2 bg-white rounded-xl border border-gray-300 shadow-sm
+                   focus:ring-2 focus:ring-green-400 focus:border-green-400
+                   text-lg text-center outline-none w-full">
+            <p id="errorprice" class="text-red-600 text-sm h-4"></p>
+        </div>
+    
+        <div class="flex flex-col gap-2 w-full max-w-xs">
+            <label for="last" class="text-lg font-medium text-gray-700">tip percentage</label>
+            <div class="flex flex-row">
+            <input type="range" id="tip" min="0" max="30" step="5" value="10" 
+                   class="px-6 py-2 bg-white rounded-xl mr-2
+                   w-full cursor-pointer">
+            <span id="rangevalue" class=" font-bold text-gray-700">10%</span>
+            </div>
+        </div>
+    
+
+        <div class=" flex flex-col gap-2 w-full max-w-xs">
+            <label for="name" class="text-lg font-medium text-gray-700">number of people</label>
+            <input oninput="lerror();" 
+                   type="number" id="people" 
+                   class="px-6 py-2 bg-white rounded-xl border border-gray-300 shadow-sm
+                   focus:ring-2 focus:ring-green-400 focus:border-green-400
+                   text-lg text-center outline-none w-full">
+            <p id="errorpeople" class="text-red-600 text-sm h-4"></p>
+        </div>
+    
+        <button onclick="sabt(event)" 
+                class="mt-2 px-6 pt-2.5 pb-3 bg-green-600 text-white rounded-xl shadow hover:bg-green-700 transition">
+            <div class="text-lg font-medium text-white-700">calculate</div>
+        </button>
+
+        <div class=" flex flex-col gap-2 w-full max-w-xs">
+            <label for="name" class="text-lg font-medium text-gray-700">share of each person</label>
+
+            <input id="output" type="text" readonly class="px-6 py-2 mb-3 bg-white rounded-xl border border-gray-300 shadow-sm
+            focus:ring-2 focus:ring-green-400 focus:border-green-400
+            text-lg text-center outline-none w-full">
+        </div>
+    
+    </form>
+    <script>
+        const slider = document.getElementById("tip");
+        const output = document.getElementById("rangevalue");
+
+        slider.addEventListener("input", () => {
+        output.textContent = slider.value + "%";
+        });
+        function sabt(event){
+            event.preventDefault()
+            let price = Number(document.querySelector("#cost").value)
+            let tip= Number(document.querySelector("#tip").value)
+            let People= Number(document.querySelector("#people").value)
+        
+            if(!price || !People){
+                alert("please enter necessary information")
+                return
+            }
+            else{
+                let cost_of_each_person = (price * (1 + tip / 100)) / People
+                document.querySelector("#output").value = cost_of_each_person.toFixed(0) + "$"
+            }
+        }
+        const cost = document.getElementById("cost");
+        const people = document.getElementById("people");
+        function nerror(){
+            if (cost.value.trim() === "" || isNaN(cost.value)){
+                document.querySelector("#errorprice").innerHTML = "please inter the cost"
+            }
+            else{
+                document.querySelector("#errorprice").innerHTML = ""
+            }
+        }
+        function lerror(){
+            if (people.value.trim() === "" || isNaN(people.value)){
+                document.querySelector("#errorpeople").innerHTML = "please inter the cost"
+            }
+            else{
+                document.querySelector("#errorpeople").innerHTML = ""
+            }
+        }
+    </script>
+</body>
+</html>

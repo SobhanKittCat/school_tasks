@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>password Generator</title>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen font-tahoma">
+    <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
+        <h1 class="text-2xl font-bold text-center text-gray-700 mb-6">Password Generator</h1>
+                      
+        <div class="flex flex-col text-left">
+            <label for="name" class="text-gray-600 mb-1 ml-1 font-medium">password length</label>
+            <input oninput="nerror()" id="passLength" type="number" min="4" max="40" placeholder="Enter password length"
+                class="px-4 py-2 bg-gray-50 rounded-xl border mt-2 mb-2 border-gray-300 outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all">
+            <p id="errorpass" class="text-red-600 text-sm h-4 mb-2"></p>
+        </div>
+      
+        <div class="space-y-2 flex flex-col">
+          <label class="text-gray-600 font-medium">
+            <input id="includelower" type="checkbox" class="w-4 h-4 mt-1.5 mb-1.5">
+            include lowecase
+          </label>
+      
+          <label class="text-gray-600 font-medium">
+            <input id="includeUpper" type="checkbox" class="w-4 h-4 mt-1.5 mb-1.5">
+            include uppercase
+          </label>
+      
+          <label class="text-gray-600 font-medium">
+            <input id="includeSymbols" type="checkbox" class="w-4 h-4 mt-1.5 mb-1.5">
+            include symbols
+          </label>
+        </div>
+      
+        <button id="generateBtn"
+          class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-3 hover:bg-blue-600">
+          Generate
+        </button>
+      
+        <div class="flex items-center gap-2">
+          <input id="output" type="text" readonly class="border-2 p-2 flex-1 rounded">
+          <button id="copyBtn" class="bg-gray-600 text-white px-3 py-2 rounded">Copy</button>
+        </div>
+      
+        <div class="w-full h-2 bg-gray-200 rounded mt-4">
+          <div id="strengthBar" class="h-full w-1 bg-red-500 rounded-2xl"></div>
+        </div>
+      </div>
+      <script>
+const passLength = document.getElementById("passLength");
+const includeNumbers = document.getElementById("includeNumbers");
+const includeUpper = document.getElementById("includeUpper");
+const includeSymbols = document.getElementById("includeSymbols");
+const passlength = document.getElementById("passLength")
+let valued = 1
+
+const output = document.getElementById("output");
+const strengthBar = document.getElementById("strengthBar");
+
+
+
+document.getElementById("generateBtn").addEventListener("click", () => {
+  output.value = generatePassword();
+  updateStrength(output.value);
+});
+
+
+document.getElementById("copyBtn").addEventListener("click", async () => {
+    if (!output.value) return;
+
+    try {
+    await navigator.clipboard.writeText(output.value);
+  }
+    catch {
+    console.log("copy failed 😅");
+  }
+});
+
+function generatePassword() {
+  if(passlength.value.trim() === "")
+  {
+  alert("please enter necessary information")
+  valued = 0
+  }
+  else{  valued = 1
+  }
+  if(valued == 1){
+  const length = Number(passLength.value);
+
+  let chars = "0123456789"; // حروف کوچک همیشه هست
+
+  if (includelower.checked) chars += "abcdefghijklmnopqrstuvwxyz";
+  if (includeUpper.checked) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  if (includeSymbols.checked) chars += "!@#$%^&*()_+-=[]{}<>/?";
+
+  let pass = "";
+  for (let i = 0; i < length; i++) {
+    const rand = Math.floor(Math.random() * chars.length);
+    pass += chars[rand];
+  }
+  return pass;
+}}
+
+function updateStrength(password) {
+  let score = 0;
+
+  if (password.length >= 8) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[a-z]/.test(password)) score++;
+  if (/[^A-Za-z0-9]/.test(password)) score++;
+
+  const width = ["20%", "40%", "60%", "80%", "100%"][score];
+  const color = ["red", "orange", "yellow", "blue", "green"][score];
+
+  strengthBar.style.width = width;
+  strengthBar.style.background = color;
+}
+function nerror(){
+  if (passlength.value.trim() === "" || isNaN(passlength.value)){
+    document.querySelector("#errorpass").innerHTML = "please inter the password length"
+  }
+  else{
+    document.querySelector("#errorpass").innerHTML = ""
+  }
+}
+      </script>      
+</body>
+</html>
