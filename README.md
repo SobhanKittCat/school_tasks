@@ -1,4 +1,4 @@
-# the helli 7 (sistan and baluchestan branch)
-- html and task
-- tailwind and bootstrap
-- js and react
+# the end of semester js tasks done with love for the most handsome , hardworking and knowledgeable teacher that helli 7 has ever had.
+- html
+- tailwind
+- js
