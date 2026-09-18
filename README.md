@@ -1,4 +1,4 @@
-# the end of semester js tasks done with love for the most handsome , hardworking and knowledgeable teacher that helli 7 has ever had.
+# the end of semester js tasks.
 - html
 - tailwind
 - js
